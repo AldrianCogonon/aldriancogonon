@@ -12,6 +12,29 @@ main{
   margin: 0 auto;
   padding: 40px 20px;
 }
+.clean-link {
+    color: inherit;            /* Takes the color of the surrounding text */
+    text-decoration: none;      /* Removes the underline */
+    
+    /* CRITICAL: Ensures the mouse turns into a "hand" icon */
+    cursor: pointer;           
+    
+    /* Adds a smooth animation when the user interacts with the link */
+    transition: all 0.2s ease-in-out;
+}
+
+/* 2. Hover state: Signals to the user that this text is clickable */
+.clean-link:hover {
+    opacity: 0.7;               /* Subtle fade effect */
+    text-decoration: underline;  /* Underline reappears only on hover */
+    color: #555;                /* Optional: changes to a slightly different gray */
+}
+
+/* 3. Focus state: Keeps the site accessible for keyboard/tab users */
+.clean-link:focus {
+    outline: 2px solid #007bff; /* Shows a blue ring when tabbed into */
+    outline-offset: 2px;
+}
 header, footer{
   background: linear-gradient(105deg, #040720 0%, #003f87 100%);
   color: #fff;
