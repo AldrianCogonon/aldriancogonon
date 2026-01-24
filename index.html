@@ -2,101 +2,43 @@
 	<html lang="en">
 		<head>
   			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
   			<title>Aldrian Cogonon</title>
-
-  			<style>
-    				/* RESET */
-    				* {
-      				margin: 0;
-      				padding: 0;
-      				box-sizing: border-box;
-    				}
-
-    				body {
-      					font-family: Arial, sans-serif;
-      					color: white;
-    				}
-
-    				/* HERO SECTION */
-    				.hero {
-     				min-height: 100vh;
-      				background:
-        			linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        			url("asset/images/background.jpg");
-      				background-size: cover;
-      				background-position: center;
-
-      				display: flex;
-      				flex-direction: column;
-      				justify-content: center;
-      				align-items: center;
-     				text-align: center;
-      				padding: 20px;
-    				}
-
-    				/* NAVIGATION */
-    				nav {
-      					position: absolute;
-      					top: 20px;
-      					right: 30px;
-    				}
-
-    				nav a {
-      					color: white;
-      					text-decoration: none;
-      					margin-left: 20px;
-      					font-weight: bold;
-    				}
-
-    				nav a:hover {
-      					text-decoration: underline;
-    				}
-
-    				/* PROFILE IMAGE */
-    				.portfolio-image {
-      				max-width: 220px;
-      				margin-bottom: 20px;
-    				}
-
-    				.portfolio-image img {
-      				width: 100%;
-      				border-radius: 50%;
-      				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    				}
-
-   				/* TEXT */
-    				h1 {
-      					font-size: 3rem;
-      					margin-bottom: 10px;
-    				}
-
-    				p {
-      					font-size: 1.2rem;
-     					opacity: 0.9;
-    				}
-			</style>
+			<link rel="stylesheet" href="css/styles.css" type="text/css">
 		</head>
-
 		<body>
-
-  			<section class="hero">
-
-    				<nav>
-      					<a href="index.html">Home</a>
-      					<a href="about.html">About</a>
-      					<a href="services.html">Services</a>
-      					<a href="projects.html">Projects</a>
-      					<a href="contact.html">Contact</a>
-    				</nav>
-	
-    				<div class="portfolio-image">
-      					<img src="asset/images/Aldrian.jpg" alt="Portrait of Aldrian">
-    				</div>
-
-    				<h1>Aldrian Cogonon</h1>
-    				<p>Beginner Web Developer | Portfolio</p>
-
-  			</section>
-
+			<header>
+				<h1>ÆSER</h1>
+				<nav>
+					<a href="#about-me">About Me</a>
+					<a href="#projects">Projects</a>
+					<a href="#languages">Services</a>
+				</nav>
+			</header>		
+			<main>
+				<section id="about-me">
+					<h2>About Me</h2>
+					<p>I am Aldrain A. Cogonon, 18 years old, studying Information Technology. I am still learning how to code websites from scratch.</p>
+				</section>
+				<section id="projects">
+					<h2>Projects</h2>
+					<ul>
+						<li>Portfolio Landing Page</li>
+					</ul>
+				</section>
+				<section id="languages">
+					<h2>Languages</h2>
+					<ul>
+						<li>CSS</li>
+						<li>HTML</li>
+						<li>C#</li>
+						<li>C</li>
+					</ul>
+				</section>
+			</main>
+			<footer>
+				<p>© 2026 ÆSER.</p>
+			</footer>
 		</body>
 	</html>
+
