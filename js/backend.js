@@ -1,6 +1,15 @@
 const posters = document.querySelectorAll("[data-poster]");
 const body = document.body;
 
+/* Load images safely for GitHub Pages */
+document.querySelectorAll("[data-image]").forEach(poster => {
+  const img = poster.dataset.image;
+  poster.style.setProperty(
+    "--img",
+    `url("../asset/images/${img}")`
+  );
+});
+
 function isMobile() {
   return window.innerWidth <= 768;
 }
@@ -35,9 +44,7 @@ posters.forEach(poster => {
 });
 
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    closeAllPosters();
-  }
+  if (e.key === "Escape") closeAllPosters();
 });
 
 window.addEventListener("resize", closeAllPosters);
