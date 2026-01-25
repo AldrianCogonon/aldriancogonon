@@ -4,18 +4,24 @@
   <meta charset="UTF-8">
   <title>Aldrian Cogonon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <header class="stage-header">
-    <h1>Aldrian Cogonon</h1>
-    <p>Frontend-focused developer crafting clean, interactive interfaces.</p>
-  </header>
 
   <section class="poster-stage">
+
+    <!-- Header INSIDE stage (intentional design choice) -->
+    <header class="stage-header">
+      <h1>Aldrian Cogonon</h1>
+      <p>Frontend-focused developer crafting clean, interactive interfaces.</p>
+    </header>
+
     <div class="poster-track">
 
-      <!-- Poster 1 -->
+      <!-- Poster: Projects -->
       <div class="poster" data-poster>
         <div class="poster-preview">
           <div class="poster-label">
@@ -25,13 +31,13 @@
         </div>
 
         <div class="poster-content">
-          <button class="close-btn">✕</button>
+          <button class="close-btn" aria-label="Close">✕</button>
           <h2>Projects</h2>
           <p>Your content goes here…</p>
         </div>
       </div>
 
-      <!-- Poster 2 (example placeholder) -->
+      <!-- Poster: About -->
       <div class="poster" data-poster>
         <div class="poster-preview">
           <div class="poster-label">
@@ -41,7 +47,7 @@
         </div>
 
         <div class="poster-content">
-          <button class="close-btn">✕</button>
+          <button class="close-btn" aria-label="Close">✕</button>
           <h2>About Me</h2>
           <p>Your about content here…</p>
         </div>
@@ -50,6 +56,8 @@
     </div>
   </section>
 
+  <!-- JavaScript -->
+  <script src="js/backend.js" defer></script>
+
 </body>
 </html>
-
