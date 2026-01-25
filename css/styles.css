@@ -1,5 +1,5 @@
 /* =========================
-   BASE / RESET
+   RESET / BASE
 ========================= */
 
 *,
@@ -22,7 +22,7 @@ body {
   animation: drift 20s ease-in-out infinite alternate;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -35,10 +35,35 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("noise.png");
+  background-image: url("../asset/images/noise.png");
   opacity: 0.03;
   pointer-events: none;
   z-index: 0;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.stage-header {
+  text-align: center;
+  margin: 4rem 1rem 3.5rem;
+  z-index: 1;
+}
+
+.stage-header h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.stage-header p {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  letter-spacing: 0.12em;
 }
 
 /* =========================
@@ -60,16 +85,8 @@ body::before {
   box-shadow: 0 40px 80px rgba(0,0,0,0.6);
 }
 
-.poster-stage::before {
-  content: "";
-  position: absolute;
-  inset: -30%;
-  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
-  z-index: -1;
-}
-
 /* =========================
-   POSTER TRACK
+   TRACK
 ========================= */
 
 .poster-track {
@@ -79,20 +96,17 @@ body::before {
 }
 
 /* =========================
-   POSTER CARD
+   POSTER
 ========================= */
 
 .poster {
   position: relative;
   width: 220px;
   aspect-ratio: 2 / 3;
-
   border-radius: 18px;
   overflow: hidden;
-
   background: #111;
   cursor: pointer;
-
   box-shadow: 0 20px 40px rgba(0,0,0,0.45);
 
   transition:
@@ -101,33 +115,44 @@ body::before {
     filter 0.45s ease;
 }
 
+.poster-preview {
+  width: 100%;
+  height: 100%;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.poster-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.85)
+  );
+}
+
+/* Hover */
 @media (hover: hover) {
   .poster:hover {
     transform: translateY(-6px) scale(1.03);
     box-shadow: 0 30px 60px rgba(0,0,0,0.65);
     filter: brightness(1.05);
   }
-
-  .poster-track:hover .poster:not(:hover) {
-    filter: brightness(0.7);
-    transform: scale(0.98);
-  }
 }
 
 /* =========================
-   POSTER LABEL
+   LABEL
 ========================= */
 
 .poster-label {
   position: absolute;
-  inset: auto 0 0 0;
+  bottom: 0;
+  width: 100%;
   padding: 1.25rem;
-
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.85),
-    transparent
-  );
 }
 
 .poster-label h3 {
@@ -142,7 +167,7 @@ body::before {
 }
 
 /* =========================
-   EXPANDED STATE (DESKTOP)
+   EXPANDED
 ========================= */
 
 .poster-content {
@@ -151,14 +176,12 @@ body::before {
 
 .poster.active {
   position: fixed;
-  inset: 50% auto auto 50%;
-
+  top: 50%;
+  left: 50%;
   width: 80vw;
   height: 60vh;
-
   transform: translate(-50%, -50%);
   z-index: 1000;
-
   border-radius: 26px;
   box-shadow: 0 60px 120px rgba(0,0,0,0.85);
 }
@@ -173,11 +196,11 @@ body::before {
   overflow-y: auto;
 }
 
+/* Close button */
 .close-btn {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-
   background: none;
   border: none;
   color: white;
@@ -185,10 +208,7 @@ body::before {
   cursor: pointer;
 }
 
-/* =========================
-   MODAL BACKDROP
-========================= */
-
+/* Backdrop */
 body.modal-open::after {
   content: "";
   position: fixed;
@@ -202,20 +222,15 @@ body.modal-open::after {
 ========================= */
 
 @media (max-width: 768px) {
-  body {
-    align-items: flex-start;
-  }
-
   .poster-stage {
     padding: 2rem 0;
     border-radius: 0;
   }
 
   .poster-track {
-    gap: 1.25rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
     padding: 1rem 1.25rem 2rem;
   }
 
@@ -225,15 +240,8 @@ body.modal-open::after {
     scroll-snap-align: center;
   }
 
-  .poster:hover {
-    transform: none;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
-    filter: none;
-  }
-
   .poster.active {
     position: relative;
-    inset: auto;
     width: 100%;
     height: auto;
     transform: none;
@@ -250,71 +258,5 @@ body.modal-open::after {
     background: rgba(0,0,0,0.85);
     padding: 0.75rem 1rem;
     border-radius: 10px;
-    z-index: 10;
   }
 }
-/* ---------- Cinematic expand animation ---------- */
-
-.poster {
-  transform-origin: center;
-}
-
-.poster.active {
-  animation: expandPoster 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes expandPoster {
-  0% {
-    transform:
-      translate(-50%, -50%)
-      scale(0.35)
-      rotate(-6deg);
-    opacity: 0;
-  }
-  60% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.03)
-      rotate(0.5deg);
-    opacity: 1;
-  }
-  100% {
-    transform:
-      translate(-50%, -50%)
-      scale(1)
-      rotate(0deg);
-  }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .poster.active {
-    animation: none;
-  }
-}
-/* ---------- Stage Header ---------- */
-
-.stage-header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.stage-header h1 {
-  margin: 0;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-
-.stage-header p {
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
-  opacity: 0.65;
-  max-width: 520px;
-  margin-inline: auto;
-}
-.stage-header h1 {
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
