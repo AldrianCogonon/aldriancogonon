@@ -2,16 +2,45 @@
   const posters = document.querySelectorAll('[data-poster]');
   const body = document.body;
 
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  function closeAllPosters() {
+    posters.forEach(p => p.classList.remove('active'));
+    body.classList.remove('modal-open');
+  }
+
   posters.forEach(poster => {
+    const closeBtn = poster.querySelector('.close-btn');
+
     poster.addEventListener('click', () => {
+      if (poster.classList.contains('active')) return;
+
+      closeAllPosters();
       poster.classList.add('active');
-      body.classList.add('modal-open');
+
+      if (!isMobile()) {
+        body.classList.add('modal-open');
+      } else {
+        poster.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
 
-    poster.querySelector('.close-btn')?.addEventListener('click', e => {
+    closeBtn.addEventListener('click', e => {
       e.stopPropagation();
       poster.classList.remove('active');
       body.classList.remove('modal-open');
     });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeAllPosters();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    closeAllPosters();
   });
 </script>
