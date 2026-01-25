@@ -1,63 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aldrian Cogonon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Aldrian Cogonon | Portfolio</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
 
-  <section class="poster-stage">
+  <main class="poster-stage">
 
-    <!-- Header INSIDE stage (intentional design choice) -->
+    <!-- Header -->
     <header class="stage-header">
-      <h1>Aldrian Cogonon</h1>
-      <p>Frontend-focused developer crafting clean, interactive interfaces.</p>
+      <h1>MY PROJECTS</h1>
+      <p>Selected works & experiments</p>
     </header>
 
-    <div class="poster-track">
+    <!-- Posters -->
+    <section class="poster-track">
 
-      <!-- Poster: Projects -->
-      <div class="poster" data-poster>
+      <!-- Poster 1 -->
+      <article class="poster" data-poster>
+        <button class="close-btn" aria-label="Close">✕</button>
+
+        <!-- Preview (collapsed view) -->
         <div class="poster-preview">
+          <img src="assset/images/project1.jpg" alt="Project One" />
           <div class="poster-label">
-            <h3>Projects</h3>
-            <span>Selected Work</span>
+            <h3>Project One</h3>
+            <span>Web Design</span>
+          </div>
+        </div>
+
+        <!-- Expanded content -->
+        <div class="poster-content">
+          <h2>Project One</h2>
+          <p>
+            Description of the project goes here.
+            Explain what you built, tools used, and what you learned.
+          </p>
+        </div>
+      </article>
+
+      <!-- Poster 2 -->
+      <article class="poster" data-poster>
+        <button class="close-btn" aria-label="Close">✕</button>
+
+        <div class="poster-preview">
+          <img src="assset/images/project2.jpg" alt="Project Two" />
+          <div class="poster-label">
+            <h3>Project Two</h3>
+            <span>Frontend</span>
           </div>
         </div>
 
         <div class="poster-content">
-          <button class="close-btn" aria-label="Close">✕</button>
-          <h2>Projects</h2>
-          <p>Your content goes here…</p>
+          <h2>Project Two</h2>
+          <p>
+            Another project description.
+          </p>
         </div>
-      </div>
+      </article>
 
-      <!-- Poster: About -->
-      <div class="poster" data-poster>
-        <div class="poster-preview">
-          <div class="poster-label">
-            <h3>About</h3>
-            <span>Who I Am</span>
-          </div>
-        </div>
+    </section>
+  </main>
 
-        <div class="poster-content">
-          <button class="close-btn" aria-label="Close">✕</button>
-          <h2>About Me</h2>
-          <p>Your about content here…</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- JavaScript -->
-  <script src="js/backend.js" defer></script>
+  <!-- External JS -->
+  <script src="js/backend.js"></script>
 
 </body>
 </html>
