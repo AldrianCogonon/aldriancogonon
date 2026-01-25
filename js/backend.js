@@ -1,50 +1,38 @@
 const posters = document.querySelectorAll("[data-poster]");
 const body = document.body;
 
-/* Load images safely for GitHub Pages */
-document.querySelectorAll("[data-image]").forEach(poster => {
+/* IMAGE FIX (GitHub-safe) */
+posters.forEach(poster => {
   const img = poster.dataset.image;
   poster.style.setProperty(
     "--img",
-    `url("../asset/images/${img}")`
+    `url("asset/images/${img}")`
   );
 });
 
-function isMobile() {
-  return window.innerWidth <= 768;
-}
-
-function closeAllPosters() {
+function closeAll() {
   posters.forEach(p => p.classList.remove("active"));
-  body.classList.remove("modal-open");
+  body.classList.remove("modal");
 }
 
 posters.forEach(poster => {
   const closeBtn = poster.querySelector(".close-btn");
 
-  poster.addEventListener("click", e => {
-    if (e.target.closest(".close-btn")) return;
+  poster.addEventListener("click", () => {
     if (poster.classList.contains("active")) return;
-
-    closeAllPosters();
+    closeAll();
     poster.classList.add("active");
-
-    if (!isMobile()) {
-      body.classList.add("modal-open");
-    } else {
-      poster.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    body.classList.add("modal");
   });
 
   closeBtn.addEventListener("click", e => {
     e.stopPropagation();
     poster.classList.remove("active");
-    body.classList.remove("modal-open");
+    body.classList.remove("modal");
   });
 });
 
+/* ESC KEY */
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeAllPosters();
+  if (e.key === "Escape") closeAll();
 });
-
-window.addEventListener("resize", closeAllPosters);
