@@ -1,82 +1,50 @@
 <!DOCTYPE html>
-	<html lang="en">
-		<head>
-  			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-  			<title>Aldrian Cogonon</title>
-			<link rel="stylesheet" href="css/styles.css" type="text/css">
-			<style>
-				.hero {
-     				min-height: 100vh;
-      				background:
-        			linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        			url("asset/images/background.jpg");
-      				background-size: cover;
-      				background-position: center;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aldrian Cogonon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-      				display: flex;
-      				flex-direction: column;
-      				justify-content: center;
-      				align-items: center;
-     				text-align: center;
-      				padding: 20px;
-    			}
-				.portfolio-image {
-      				max-width: 220px;
-      				margin-bottom: 20px;
-    			}
-    			.portfolio-image img {
-      				width: 100%;
-      				border-radius: 50%;
-      				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    			}
-			</style>
-		</head>
-		<body>
-			<header>
-				<h1>ÆSER</h1>
-				<div class="portfolio-image">
-      					<img src="asset/images/Aldrian.jpg" alt="Portrait of Aldrian">
-    			</div>
-				<nav>
-					<a href="#about-me">About Me</a>
-					<a href="#projects">Projects</a>
-					<a href="#languages">Services</a>
-				</nav>
-			</header>		
-			<main>
-				<section id="about-me">
-					<h2>About Me</h2>
-					<p>I am Aldrain A. Cogonon, 18 years old, studying Information Technology. I am still learning how to code websites from scratch.</p>
-				</section>
-				<section id="projects">
-					<h2>Projects</h2>
-					<ul>
-						<li><p>Visit my <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="clean-link" 
-							 onclick="window.open(this.href, '_blank'); return false;" >project</a>
-						</li>
-					</ul>
-				</section>
-				<section id="languages">
-					<h2>Languages</h2>
-					<ul>
-						<li>CSS</li>
-						<li>HTML</li>
-						<li>C#</li>
-						<li>C</li>
-					</ul>
-				</section>
-			</main>
-			<footer>
-				<p>© 2026 ÆSER.</p>
-			</footer>
-		</body>
-	</html>
+<body>
 
+  <section class="poster-stage">
+    <div class="poster-track">
 
+      <!-- Poster 1 -->
+      <div class="poster" data-poster>
+        <div class="poster-preview">
+          <div class="poster-label">
+            <h3>Projects</h3>
+            <span>Selected Work</span>
+          </div>
+        </div>
 
+        <div class="poster-content">
+          <button class="close-btn">✕</button>
+          <h2>Projects</h2>
+          <p>Your content goes here…</p>
+        </div>
+      </div>
 
+      <!-- Poster 2 (example placeholder) -->
+      <div class="poster" data-poster>
+        <div class="poster-preview">
+          <div class="poster-label">
+            <h3>About</h3>
+            <span>Who I Am</span>
+          </div>
+        </div>
 
+        <div class="poster-content">
+          <button class="close-btn">✕</button>
+          <h2>About Me</h2>
+          <p>Your about content here…</p>
+        </div>
+      </div>
 
+    </div>
+  </section>
 
-
+</body>
+</html>
