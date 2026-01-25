@@ -4,61 +4,46 @@
   <meta charset="UTF-8" />
   <title>Aldrian Cogonon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
   <!-- HEADER -->
-  <header class="stage-header">
+  <header class="header">
     <h1>Aldrian Cogonon</h1>
-    <p>Frontend Developer · Interactive UI · Clean Motion</p>
+    <p>Frontend Developer · Portfolio</p>
   </header>
 
-  <!-- POSTER STAGE -->
-  <section class="poster-stage">
-    <div class="poster-track">
-
-      <!-- PROJECTS -->
-      <div class="poster" data-poster style="--img:url('../asset/images/projects.jpg')">
-        <div class="poster-preview">
-          <div class="poster-label">
-            <h3>Projects</h3>
-            <span>Selected Work</span>
-          </div>
-        </div>
-
-        <div class="poster-content">
-          <button class="close-btn">✕</button>
-          <h2>Projects</h2>
-          <p>Add your project cards, screenshots, or links here.</p>
-        </div>
+  <!-- POSTERS -->
+  <main class="stage">
+    <div class="poster" data-poster data-image="Aldrian.jpg">
+      <div class="poster-preview">
+        <h2>Projects</h2>
       </div>
 
-      <!-- ABOUT -->
-      <div class="poster" data-poster style="--img:url('../asset/images/about.jpg')">
-        <div class="poster-preview">
-          <div class="poster-label">
-            <h3>About</h3>
-            <span>Who I Am</span>
-          </div>
-        </div>
-
-        <div class="poster-content">
-          <button class="close-btn">✕</button>
-          <h2>About Me</h2>
-          <p>
-            I’m Aldrian, a frontend-focused developer who enjoys building
-            cinematic, interactive interfaces with clean motion and structure.
-          </p>
-        </div>
+      <div class="poster-content">
+        <button class="close-btn">✕</button>
+        <h2>Projects</h2>
+        <p>Add your projects here.</p>
       </div>
-
     </div>
-  </section>
 
-  <!-- JS -->
+    <div class="poster" data-poster data-image="Aldrian.jpg">
+      <div class="poster-preview">
+        <h2>About</h2>
+      </div>
+
+      <div class="poster-content">
+        <button class="close-btn">✕</button>
+        <h2>About Me</h2>
+        <p>
+          Hi, I’m Aldrian. I’m learning frontend development and building clean,
+          interactive websites.
+        </p>
+      </div>
+    </div>
+  </main>
+
   <script src="js/backend.js"></script>
 </body>
 </html>
