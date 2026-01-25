@@ -1,59 +1,228 @@
-* {
-  box-sizing: border-box;
-}
-body{
-  font-family:"Segoe UI", Roboto, sans-serif;
+body {
   margin: 0;
-  background: #f4f7fb;
-  color: #253238;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,0.06) 0%,
+      rgba(0,0,0,0.9) 60%
+    ),
+    linear-gradient(
+      180deg,
+      #0e0e0e 0%,
+      #050505 100%
+    );
+  color: #eaeaea;
 }
-main{
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 40px 20px;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("noise.png");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
 }
-.clean-link {
-    color: inherit;            /* Takes the color of the surrounding text */
-    text-decoration: none;      /* Removes the underline */
-    
-    /* CRITICAL: Ensures the mouse turns into a "hand" icon */
-    cursor: pointer;           
-    
-    /* Adds a smooth animation when the user interacts with the link */
-    transition: all 0.2s ease-in-out;
+.poster-stage {
+  position: relative;
 }
 
-/* 2. Hover state: Signals to the user that this text is clickable */
-.clean-link:hover {
-    opacity: 0.7;               /* Subtle fade effect */
-    text-decoration: underline;  /* Underline reappears only on hover */
-    color: #555;                /* Optional: changes to a slightly different gray */
+.poster-stage::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.08),
+    transparent 70%
+  );
+  z-index: -1;
+}
+@keyframes drift {
+  0% { background-position: 50% 50%; }
+  100% { background-position: 52% 48%; }
 }
 
-/* 3. Focus state: Keeps the site accessible for keyboard/tab users */
-.clean-link:focus {
-    outline: 2px solid #007bff; /* Shows a blue ring when tabbed into */
-    outline-offset: 2px;
+body {
+  background-size: 200% 200%;
+  animation: drift 20s ease-in-out infinite alternate;
 }
-header, footer{
-  background: linear-gradient(105deg, #040720 0%, #003f87 100%);
-  color: #fff;
-  padding: 60px 20px;
-  text-align: center;
+.stage-wrapper {
+  min-height: calc(100vh - 80px); /* header space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
 }
-nav a{
-  color: #7dd3fc;
-  margin-right: 16px;
-  text-decoration: none;
+.poster-stage {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  padding: 4rem 3rem;
+
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+
+  border-radius: 24px;
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.6);
+
+  isolation: isolate;
 }
-section{
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0, 0.08);
+.poster-stage::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.08),
+    transparent 70%
+  );
+  z-index: -1;
 }
-section h2{
-  margin-top: 0;
-  color: #36a3ff;
+.poster-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.poster {
+  width: 220px;
+  aspect-ratio: 2 / 3;
+}
+@media (max-width: 900px) {
+  .poster-stage {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .poster-grid {
+    gap: 1.5rem;
+  }
+}
+.poster {
+  position: relative;
+  width: 220px;
+  aspect-ratio: 2 / 3;
+
+  border-radius: 16px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    filter 0.4s ease;
+}
+.poster {
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
+@media (hover: hover) {
+  .poster:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.6);
+    filter: brightness(1.05);
+  }
+}
+.poster-label {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.2rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8,
+    transparent
+  );
+
+  color: white;
+}
+
+.poster-label h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+.poster-label span {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.poster-grid:hover .poster:not(:hover) {
+  filter: brightness(0.7);
+  transform: scale(0.98);
+}
+.poster-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.poster {
+  position: relative;
+  width: 220px;
+  aspect-ratio: 2 / 3;
+
+  border-radius: 16px;
+  overflow: hidden;
+
+  background: #111;
+  cursor: pointer;
+
+  transition:
+    transform 0.6s ease,
+    width 0.6s ease,
+    height 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+.poster-content {
+  display: none;
+}
+.poster.active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 80vw;
+  height: 60vh;
+  aspect-ratio: auto;
+
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  border-radius: 24px;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.8);
+  z-index: 1000;
+}
+.poster.active .poster-preview {
+  display: none;
+}
+
+.poster.active .poster-content {
+  display: block;
+  padding: 3rem;
+  color: white;
+  overflow-y: auto;
+}
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+
+  cursor: pointer;
+}
+body.modal-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 900;
 }
