@@ -257,3 +257,71 @@ body {
     flex-wrap: nowrap;
   }
 }
+@media (max-width: 768px) {
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .poster-stage {
+    padding: 2rem 0;
+  }
+}
+@media (max-width: 768px) {
+  .poster-track {
+    display: flex;
+    gap: 1.25rem;
+
+    overflow-x: auto;
+    overflow-y: visible;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    padding: 1rem 1.25rem 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .poster {
+    flex: 0 0 80%;
+    max-width: 80%;
+    scroll-snap-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .poster:hover {
+    transform: none;
+    box-shadow: none;
+    filter: none;
+  }
+}
+@media (max-width: 768px) {
+  .poster-content {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .poster.active {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .poster.active .poster-preview {
+    display: none;
+  }
+
+  .poster.active .poster-content {
+    display: block;
+    padding: 2rem 1.25rem 4rem;
+  }
+}
+@media (max-width: 768px) {
+  .close-btn {
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.85);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    z-index: 10;
+  }
+}
