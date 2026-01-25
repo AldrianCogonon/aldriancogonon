@@ -2,79 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Aldrian Cogonon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Aldrian Cogonon | Portfolio</title>
-
-  <!-- External CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-
-  <main class="poster-stage">
-
-    <!-- Header -->
-   <header class="stage-header">
-    <h1>ALDRIAN COGONON</h1>
-    <p>Frontend Developer · Web Designer</p>
+  <!-- HEADER -->
+  <header class="stage-header">
+    <h1>Aldrian Cogonon</h1>
+    <p>Frontend Developer · Interactive UI · Clean Motion</p>
   </header>
 
-    <!-- Posters -->
-    <section class="poster-track">
+  <!-- POSTER STAGE -->
+  <section class="poster-stage">
+    <div class="poster-track">
 
-      <!-- Poster 1 -->
-      <article class="poster" data-poster>
-        <button class="close-btn" aria-label="Close">✕</button>
-
-        <!-- Preview (collapsed view) -->
+      <!-- PROJECTS -->
+      <div class="poster" data-poster style="--img:url('../asset/images/projects.jpg')">
         <div class="poster-preview">
-          <img src="asset/images/Aldrian.jpg" alt="Aldrian" />
           <div class="poster-label">
-            <h3>Project One</h3>
-            <span>Web Design</span>
-          </div>
-        </div>
-
-        <!-- Expanded content -->
-        <div class="poster-content">
-          <h2>Project One</h2>
-          <p>
-            Description of the project goes here.
-            Explain what you built, tools used, and what you learned.
-          </p>
-        </div>
-      </article>
-
-      <!-- Poster 2 -->
-      <article class="poster" data-poster>
-        <button class="close-btn" aria-label="Close">✕</button>
-
-        <div class="poster-preview">
-          <img src="asset/images/Aldrian.jpg" alt="Aldrian" />
-          <div class="poster-label">
-            <h3>Project Two</h3>
-            <span>Frontend</span>
+            <h3>Projects</h3>
+            <span>Selected Work</span>
           </div>
         </div>
 
         <div class="poster-content">
-          <h2>Project Two</h2>
+          <button class="close-btn">✕</button>
+          <h2>Projects</h2>
+          <p>Add your project cards, screenshots, or links here.</p>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="poster" data-poster style="--img:url('../asset/images/about.jpg')">
+        <div class="poster-preview">
+          <div class="poster-label">
+            <h3>About</h3>
+            <span>Who I Am</span>
+          </div>
+        </div>
+
+        <div class="poster-content">
+          <button class="close-btn">✕</button>
+          <h2>About Me</h2>
           <p>
-            Another project description.
+            I’m Aldrian, a frontend-focused developer who enjoys building
+            cinematic, interactive interfaces with clean motion and structure.
           </p>
         </div>
-      </article>
+      </div>
 
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- External JS -->
+  <!-- JS -->
   <script src="js/backend.js"></script>
-
 </body>
 </html>
-
-
-
-
