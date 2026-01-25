@@ -313,4 +313,8 @@ body.modal-open::after {
   max-width: 520px;
   margin-inline: auto;
 }
+.stage-header h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
 
