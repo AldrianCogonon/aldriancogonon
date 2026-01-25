@@ -1,19 +1,36 @@
+/* =========================
+   BASE / RESET
+========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255,255,255,0.06) 0%,
-      rgba(0,0,0,0.9) 60%
-    ),
-    linear-gradient(
-      180deg,
-      #0e0e0e 0%,
-      #050505 100%
-    );
+  font-family: system-ui, sans-serif;
   color: #eaeaea;
+
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.06), rgba(0,0,0,0.9) 60%),
+    linear-gradient(180deg, #0e0e0e, #050505);
+
+  background-size: 200% 200%;
+  animation: drift 20s ease-in-out infinite alternate;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+@keyframes drift {
+  from { background-position: 50% 50%; }
+  to   { background-position: 52% 48%; }
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -23,128 +40,99 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
+
+/* =========================
+   STAGE
+========================= */
+
 .poster-stage {
   position: relative;
-}
+  z-index: 1;
 
-.poster-stage::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background: radial-gradient(
-    circle,
-    rgba(255,255,255,0.08),
-    transparent 70%
-  );
-  z-index: -1;
-}
-@keyframes drift {
-  0% { background-position: 50% 50%; }
-  100% { background-position: 52% 48%; }
-}
-
-body {
-  background-size: 200% 200%;
-  animation: drift 20s ease-in-out infinite alternate;
-}
-.stage-wrapper {
-  min-height: calc(100vh - 80px); /* header space */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 2rem;
-}
-.poster-stage {
-  position: relative;
-  max-width: 1200px;
   width: 100%;
+  max-width: 1400px;
   padding: 4rem 3rem;
 
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(10px);
 
-  border-radius: 24px;
-  box-shadow:
-    0 40px 80px rgba(0, 0, 0, 0.6);
-
-  isolation: isolate;
+  border-radius: 28px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
 }
+
 .poster-stage::before {
   content: "";
   position: absolute;
   inset: -30%;
-  background: radial-gradient(
-    circle at center,
-    rgba(255,255,255,0.08),
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
   z-index: -1;
 }
-.poster-grid {
+
+/* =========================
+   POSTER TRACK
+========================= */
+
+.poster-track {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 3rem;
 }
-.poster {
-  width: 220px;
-  aspect-ratio: 2 / 3;
-}
-@media (max-width: 900px) {
-  .poster-stage {
-    padding: 2.5rem 1.5rem;
-  }
 
-  .poster-grid {
-    gap: 1.5rem;
-  }
-}
+/* =========================
+   POSTER CARD
+========================= */
+
 .poster {
   position: relative;
   width: 220px;
   aspect-ratio: 2 / 3;
 
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
 
-  background-size: cover;
-  background-position: center;
-
+  background: #111;
   cursor: pointer;
 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+
   transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease,
-    filter 0.4s ease;
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    filter 0.45s ease;
 }
-.poster {
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.4);
-}
+
 @media (hover: hover) {
   .poster:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow:
-      0 30px 60px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.65);
     filter: brightness(1.05);
   }
+
+  .poster-track:hover .poster:not(:hover) {
+    filter: brightness(0.7);
+    transform: scale(0.98);
+  }
 }
+
+/* =========================
+   POSTER LABEL
+========================= */
+
 .poster-label {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 1.2rem;
+  padding: 1.25rem;
 
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.8,
+    rgba(0,0,0,0.85),
     transparent
   );
-
-  color: white;
 }
 
 .poster-label h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   letter-spacing: 0.05em;
 }
 
@@ -152,51 +140,29 @@ body {
   font-size: 0.8rem;
   opacity: 0.7;
 }
-.poster-grid:hover .poster:not(:hover) {
-  filter: brightness(0.7);
-  transform: scale(0.98);
-}
-.poster-grid {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-}
-.poster {
-  position: relative;
-  width: 220px;
-  aspect-ratio: 2 / 3;
 
-  border-radius: 16px;
-  overflow: hidden;
-
-  background: #111;
-  cursor: pointer;
-
-  transition:
-    transform 0.6s ease,
-    width 0.6s ease,
-    height 0.6s ease,
-    box-shadow 0.6s ease;
-}
+/* =========================
+   EXPANDED STATE (DESKTOP)
+========================= */
 
 .poster-content {
   display: none;
 }
+
 .poster.active {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  inset: 50% auto auto 50%;
 
   width: 80vw;
   height: 60vh;
-  aspect-ratio: auto;
 
-  transform: translate(-50%, -50%) rotate(0deg);
-
-  border-radius: 24px;
-  box-shadow: 0 60px 120px rgba(0,0,0,0.8);
+  transform: translate(-50%, -50%);
   z-index: 1000;
+
+  border-radius: 26px;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.85);
 }
+
 .poster.active .poster-preview {
   display: none;
 }
@@ -204,60 +170,37 @@ body {
 .poster.active .poster-content {
   display: block;
   padding: 3rem;
-  color: white;
   overflow-y: auto;
 }
+
 .close-btn {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1.25rem;
+  right: 1.25rem;
 
   background: none;
   border: none;
   color: white;
   font-size: 1.5rem;
-
   cursor: pointer;
 }
-body.modal-open::before {
+
+/* =========================
+   MODAL BACKDROP
+========================= */
+
+body.modal-open::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
   z-index: 900;
 }
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.poster-stage {
-  width: 100%;
-  max-width: 1400px;
-  padding: 4rem 3rem;
-}
-.poster-track {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-}
-.poster {
-  width: 220px;
-  aspect-ratio: 2 / 3;
-}
-.poster-stage {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 28px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-}
-@media (min-width: 769px) {
-  .poster-track {
-    flex-wrap: nowrap;
-  }
-}
-@media (max-width: 768px) {
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 768px) {
   body {
     align-items: flex-start;
@@ -265,57 +208,42 @@ body {
 
   .poster-stage {
     padding: 2rem 0;
+    border-radius: 0;
   }
-}
-@media (max-width: 768px) {
+
   .poster-track {
-    display: flex;
     gap: 1.25rem;
-
     overflow-x: auto;
-    overflow-y: visible;
-
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-
     padding: 1rem 1.25rem 2rem;
   }
-}
-@media (max-width: 768px) {
+
   .poster {
     flex: 0 0 80%;
     max-width: 80%;
     scroll-snap-align: center;
   }
-}
-@media (max-width: 768px) {
+
   .poster:hover {
     transform: none;
-    box-shadow: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
     filter: none;
   }
-}
-@media (max-width: 768px) {
-  .poster-content {
-    display: none;
-  }
-}
-@media (max-width: 768px) {
-  .poster.active {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
 
-  .poster.active .poster-preview {
-    display: none;
+  .poster.active {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    transform: none;
+    border-radius: 0;
   }
 
   .poster.active .poster-content {
-    display: block;
     padding: 2rem 1.25rem 4rem;
   }
-}
-@media (max-width: 768px) {
+
   .close-btn {
     position: sticky;
     top: 0;
