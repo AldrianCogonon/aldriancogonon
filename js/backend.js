@@ -13,7 +13,9 @@ function closeAllPosters() {
 posters.forEach(poster => {
   const closeBtn = poster.querySelector('.close-btn');
 
-  poster.addEventListener('click', () => {
+  poster.addEventListener('click', (e) => {
+    // ✅ prevent clicks from buttons / inner content
+    if (e.target.closest('.close-btn')) return;
     if (poster.classList.contains('active')) return;
 
     closeAllPosters();
@@ -22,14 +24,11 @@ posters.forEach(poster => {
     if (!isMobile()) {
       body.classList.add('modal-open');
     } else {
-      poster.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      poster.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 
-  closeBtn.addEventListener('click', e => {
+  closeBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     poster.classList.remove('active');
     body.classList.remove('modal-open');
