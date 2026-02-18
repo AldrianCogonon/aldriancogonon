@@ -1,10 +1,11 @@
+/* GLOBAL STYLES */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   background: #0b0b0b;
   color: white;
   min-height: 100vh;
@@ -19,6 +20,7 @@ body {
 .header h1 {
   margin: 0;
   letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .header p {
@@ -26,7 +28,7 @@ body {
   margin-top: 0.5rem;
 }
 
-/* STAGE */
+/* STAGE (Container for Posters) */
 .stage {
   display: flex;
   justify-content: center;
@@ -35,7 +37,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* POSTER */
+/* POSTER BASE STATE */
 .poster {
   width: 220px;
   aspect-ratio: 2 / 3;
@@ -44,86 +46,131 @@ body {
   background: #111;
   cursor: pointer;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
 }
 
 .poster:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* IMAGE */
+/* PREVIEW IMAGE (Visible initially) */
 .poster-preview {
   width: 100%;
   height: 100%;
-  background-image: var(--img); /* Now works because of inline style */
+  background-image: var(--img); /* Uses the inline style variable */
   background-size: cover;
   background-position: center;
+  background-color: #222; /* Fallback color */
   display: flex;
   align-items: flex-end;
-  padding: 1rem;
-  background-color: #222;
+  padding: 1.5rem;
 }
 
-/* LINK STYLING */
-.poster-content .link-btn {
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  color: white;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
+.poster-preview h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.poster-content .link-btn:hover {
-  background: white;
-  color: black;
-  border-color: white;
-  transform: translateY(-2px);
-}
-
-/* link is clickable inside the modal */
-.poster.active .poster-content {
-  display: flex;
+/* POSTER CONTENT (Hidden by default) */
+.poster-content {
+  display: none; /* Crucial: Hides text/links until clicked */
+  padding: 2.5rem;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 2.5rem;
+}
+
+/* EXPANDED / ACTIVE STATE (Modal effect) */
+.poster.active {
+  position: fixed;
+  inset: 10%; /* Positions modal 10% from every edge */
+  width: auto;
+  height: auto;
+  z-index: 1000;
+  background: #111;
+  border-radius: 24px;
+  cursor: default;
+  transform: none; /* Removes hover lift when expanded */
+}
+
+/* Logic to swap Preview with Content */
+.poster.active .poster-preview {
+  display: none !important;
+}
+
+.poster.active .poster-content {
+  display: flex !important;
+}
+
+/* LINK STYLING (Ghost Button Style) */
+.link-btn {
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.link-btn:hover {
+  background: white;
+  color: black;
+  border-color: white;
+  transform: scale(1.05);
 }
 
 /* CLOSE BUTTON */
 .close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
-  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-/* BACKDROP */
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* BACKDROP OVERLAY */
 body.modal::after {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
   z-index: 999;
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
   .poster {
-    width: 80%;
+    width: 280px;
   }
 
   .poster.active {
     inset: 0;
     border-radius: 0;
   }
+  
+  .poster-content {
+    padding: 1.5rem;
+  }
 }
-
