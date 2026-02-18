@@ -1,61 +1,10 @@
-* {
-  box-sizing: border-box;
-}
+/* ... Keep your existing CSS above ... */
 
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #0b0b0b;
-  color: white;
-  min-height: 100vh;
-}
-
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.header h1 {
-  margin: 0;
-  letter-spacing: 0.15em;
-}
-
-.header p {
-  opacity: 0.6;
-  margin-top: 0.5rem;
-}
-
-/* STAGE */
-.stage {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 3rem 1rem;
-  flex-wrap: wrap;
-}
-
-/* POSTER */
-.poster {
-  width: 220px;
-  aspect-ratio: 2 / 3;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #111;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.poster:hover {
-  transform: translateY(-6px);
-}
-
-/* IMAGE */
+/* UPDATED IMAGE LOGIC */
 .poster-preview {
   width: 100%;
   height: 100%;
-  background-image: var(--img);
+  background-image: var(--img); /* Now works because of inline style */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -64,63 +13,34 @@ body {
   background-color: #222;
 }
 
-.poster-preview h2 {
-  margin: 0;
+/* LINK STYLING (The "No Underline" Suggestion) */
+.poster-content .link-btn {
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* EXPANDED */
-.poster-content {
-  display: none;
+.poster-content .link-btn:hover {
+  background: white;
+  color: black;
+  border-color: white;
+  transform: translateY(-2px);
 }
 
-.poster.active {
-  position: fixed;
-  inset: 10%;
-  width: auto;
-  height: auto;
-  z-index: 1000;
-  background: #111;
-  border-radius: 20px;
-}
-
-.poster.active .poster-preview {
-  display: none;
-}
-
+/* Ensure the link is actually clickable inside the modal */
 .poster.active .poster-content {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   padding: 2.5rem;
 }
 
-/* CLOSE BUTTON */
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* BACKDROP */
-body.modal::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 999;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .poster {
-    width: 80%;
-  }
-
-  .poster.active {
-    inset: 0;
-    border-radius: 0;
-  }
-}
+/* ... Keep your existing Close Button and Media Queries below ... */
