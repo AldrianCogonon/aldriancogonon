@@ -1,6 +1,57 @@
-/* ... Keep your existing CSS above ... */
+* {
+  box-sizing: border-box;
+}
 
-/* UPDATED IMAGE LOGIC */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #0b0b0b;
+  color: white;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.header h1 {
+  margin: 0;
+  letter-spacing: 0.15em;
+}
+
+.header p {
+  opacity: 0.6;
+  margin-top: 0.5rem;
+}
+
+/* STAGE */
+.stage {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 1rem;
+  flex-wrap: wrap;
+}
+
+/* POSTER */
+.poster {
+  width: 220px;
+  aspect-ratio: 2 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.poster:hover {
+  transform: translateY(-6px);
+}
+
+/* IMAGE */
 .poster-preview {
   width: 100%;
   height: 100%;
@@ -13,7 +64,7 @@
   background-color: #222;
 }
 
-/* LINK STYLING (The "No Underline" Suggestion) */
+/* LINK STYLING */
 .poster-content .link-btn {
   text-decoration: none;
   display: inline-block;
@@ -34,7 +85,7 @@
   transform: translateY(-2px);
 }
 
-/* Ensure the link is actually clickable inside the modal */
+/* link is clickable inside the modal */
 .poster.active .poster-content {
   display: flex;
   flex-direction: column;
@@ -43,4 +94,36 @@
   padding: 2.5rem;
 }
 
-/* ... Keep your existing Close Button and Media Queries below ... */
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* BACKDROP */
+body.modal::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 999;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .poster {
+    width: 80%;
+  }
+
+  .poster.active {
+    inset: 0;
+    border-radius: 0;
+  }
+}
+
